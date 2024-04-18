@@ -6,3 +6,9 @@
 //
 
 import Foundation
+import FirebaseAuth
+
+struct AuthResponse {
+    let error: ErrorResponse?
+    let result: AuthDataResult?
+}

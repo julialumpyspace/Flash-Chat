@@ -8,16 +8,25 @@
 import Foundation
 import FirebaseAuth
 
-class AuthManager: Observable {
-    @Published var error: String
+class AuthManager: ObservableObject {
+    @Published var response: AuthResponse?
     
     func register(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            var errorRes: ErrorResponse? = nil
             if error != nil {
-                self.error = error?.localizedDescription ?? "Error occured during the request"
-            } else {
-                self.performSegue(withIdentifier: K.Segue_RegisterToChat_ID, sender: self)
+                let message = error?.localizedDescription ?? ErrorMessage.requestError()
+                errorRes = ErrorResponse(error: true, message: message)
             }
+            DispatchQueue.main.async {
+                self.response = AuthResponse(error: errorRes, result: authResult)
+            }
+            
+            //            if error != nil {
+            //                self.error = error?.localizedDescription ?? "Error occured during the request"
+            //            } else {
+            //                self.performSegue(withIdentifier: K.Segue_RegisterToChat_ID, sender: self)
+            //            }
         }
     }
     

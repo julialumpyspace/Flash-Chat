@@ -5,4 +5,9 @@
 //  Created by Юлія Воробей on 18.04.2024.
 //
 
-import Foundation
+import UIKit
+
+struct ErrorResponse {
+    let error: Bool
+    let message: String
+}

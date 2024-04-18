@@ -7,6 +7,8 @@
 
 import Foundation
 
-struct Constants {
-    let AppTitle: String = "Hi! How’s old socks? \r\n This is a flash chat!"
+struct K {
+    static let AppTitle: String = "Hi! How’s old socks?\nThis is a flash chat!"
+    static let Segue_RegisterToChat_ID: String = "fromRegisterToChat"
+    static let Segue_LoginToChat_ID: String = "fromLoginToChat"
 }

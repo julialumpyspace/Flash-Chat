@@ -5,9 +5,11 @@
 //  Created by Юлія Воробей on 18.04.2024.
 //
 
-import Foundation
+import UIKit
 
-struct ErrorModel {
-    let empty = "The field is empty"
-    let model: [ErrorData] = []
+extension UITextField: ErrorUIHandler {
+    func errorEmptyCheck(field: UITextField, name: String) -> ErrorResponse {
+        let errorManager = ErrorManager()
+        return errorManager.errorEmptyCheck(field: field, name: name)
+    }
 }

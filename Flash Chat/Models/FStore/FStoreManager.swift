@@ -42,8 +42,6 @@ class FStoreManager {
                 if let e = error {
                     errorResponse = ErrorResponse(error: true, message: ErrorMessage.FStore.get(error: e))
                 } else {
-                    print("querySnapshot?.documents")
-                    print(querySnapshot?.documents)
                     if let snapshotDocuments = querySnapshot?.documents {
                         for doc in snapshotDocuments {
                             let data = doc.data()
@@ -62,7 +60,6 @@ class FStoreManager {
                             }
                         }
                     } else if ((querySnapshot?.documents.count) == nil) {
-                        print("querySnapshot is nil")
                         errorResponse = ErrorResponse(error: true, message: ErrorMessage.FStore.parseDocumnetsToString)
                     } else {
                         errorResponse = ErrorResponse(error: true, message: ErrorMessage.FStore.parseDocumnetsToString)

@@ -8,32 +8,93 @@
 import Foundation
 import FirebaseFirestore
 
-struct FStoreManager {
-    let db = Firestore.firestore()
-    let user = AuthManager().getAuthorizedUser()
+class FStoreManager {
+    private lazy var observers: [WeakFStoreObserver] = []
     
-    func collect(message: String)  {
-        if user != nil {
-            print("User", user!)
-            let dbData: [String : Any] = [
-                K.FStore.SenderField: user!,
-                K.FStore.BodyField: message
-            ]
-            db.collection(K.FStore.CollectionName).addDocument(data: dbData) { error in
-                if let e = error {
-                    print("There was an issue saving data to Firestore: \(e)")
-                } else {
-                    print("Successfully saved data!")
-                }
+    let db = Firestore.firestore()
+    
+    func add(message: Message)  {
+        let dbData = [
+            K.FStore.SenderField: message.sender,
+            K.FStore.BodyField: message.body,
+            K.FStore.DateField: message.date
+        ]
+        
+        db.collection(K.FStore.CollectionName).addDocument(data: dbData) { error in
+            var errorResponse: ErrorResponse = ErrorResponse(error: false, message: "")
+            if let e = error {
+                errorResponse = ErrorResponse(
+                    error: true,
+                    message: ErrorMessage.FStore.add(error: e))
             }
-            
-        } else {
-            print("No user")
+            let response: FStoreMessageResponse = FStoreMessageResponse(error: errorResponse, result: nil)
+                self.notifyAddMessageDidFinish(response: response)
         }
     }
     
     func get() {
-        
+        db.collection(K.FStore.CollectionName)
+            .order(by: K.FStore.DateField)
+            .addSnapshotListener { (querySnapshot, error) in
+                var errorResponse: ErrorResponse = ErrorResponse(error: false, message: "")
+                var messages: [Message] = []
+                
+                if let e = error {
+                    errorResponse = ErrorResponse(error: true, message: ErrorMessage.FStore.get(error: e))
+                } else {
+                    print("querySnapshot?.documents")
+                    print(querySnapshot?.documents)
+                    if let snapshotDocuments = querySnapshot?.documents {
+                        for doc in snapshotDocuments {
+                            let data = doc.data()
+                            if let sender = data[K.FStore.SenderField] as? String,
+                               let body = data[K.FStore.BodyField] as? String,
+                               let date = data[K.FStore.DateField] as? String {
+                                let message = Message(
+                                    sender: sender,
+                                    body: body,
+                                    date: date)
+                                messages.append(message)
+                                
+                                errorResponse =  ErrorResponse(error: false, message: "")
+                            } else {
+                                errorResponse = ErrorResponse(error: true, message: ErrorMessage.FStore.parseDocumnetsToString)
+                            }
+                        }
+                    } else if ((querySnapshot?.documents.count) == nil) {
+                        print("querySnapshot is nil")
+                        errorResponse = ErrorResponse(error: true, message: ErrorMessage.FStore.parseDocumnetsToString)
+                    } else {
+                        errorResponse = ErrorResponse(error: true, message: ErrorMessage.FStore.parseDocumnetsToString)
+                    }
+                }
+                
+                let result = messages.count > 1 ? messages : nil
+                let response: FStoreMessageResponse = FStoreMessageResponse(error: errorResponse, result: result)
+                self.notifyGetMessageDidFinish(response: response)
+                
+            }
+    }
+    
+}
+
+// MARK: - FStoreObserver
+
+extension FStoreManager {
+    func addObserver(_ observer: FStoreObserver) {
+        observers.append(WeakFStoreObserver(value: observer))
+    }
+    
+    func removeObserver(_ observer: FStoreObserver) {
+        observers.removeAll(where: { $0.value === observer })
+    }
+    
+    func notifyAddMessageDidFinish(response: FStoreMessageResponse) {
+        observers.forEach { $0.value?.addMessageDidFinish(response: response)}
+    }
+    
+    func notifyGetMessageDidFinish(response: FStoreMessageResponse) {
+        observers.forEach { $0.value?.getMessagesDidFinish(response: response)}
     }
     
 }

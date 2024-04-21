@@ -1091,6 +1091,7 @@ PODS:
   - gRPC-Core/Interface (1.62.5)
   - gRPC-Core/Privacy (1.62.5)
   - GTMSessionFetcher/Core (3.4.0)
+  - IQKeyboardManagerSwift (7.0.2)
   - leveldb-library (1.22.5)
   - nanopb (2.30910.0):
     - nanopb/decode (= 2.30910.0)
@@ -1105,6 +1106,7 @@ DEPENDENCIES:
   - CLTypingLabel (~> 0.4.0)
   - FirebaseAuth
   - FirebaseFirestore
+  - IQKeyboardManagerSwift
   - SnapKit (~> 5.7.0)
 
 SPEC REPOS:
@@ -1124,6 +1126,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - leveldb-library
     - nanopb
     - PromisesObjC
@@ -1146,12 +1149,13 @@ SPEC CHECKSUMS:
   "gRPC-C++": e725ef63c4475d7cdb7e2cf16eb0fde84bd9ee51
   gRPC-Core: eee4be35df218649fe66d721a05a7f27a28f069b
   GTMSessionFetcher: ed61055dc13f769533d057edc520a4cb8f41c324
+  IQKeyboardManagerSwift: d338c11a896e9f29603443700c4567e32f830c22
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: ee028283007766515383dbf3b4f768fa5fed7f90
+PODFILE CHECKSUM: 21b42d0894b3aab44f38d688203fa80e28d56945
 
 COCOAPODS: 1.15.2

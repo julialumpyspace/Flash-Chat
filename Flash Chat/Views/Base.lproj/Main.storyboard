@@ -3,12 +3,13 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Register View Controller-->
+        <!--Flash Chat-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="RegisterViewController" customModule="Flash_Chat" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,7 +36,7 @@
                                     <action selector="registerPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nwp-6l-vDd"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. lusy@gmail.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bbL-8c-Uqz">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. lucy@gmail.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bbL-8c-Uqz">
                                 <rect key="frame" x="71.666666666666686" y="128" width="250" height="35"/>
                                 <accessibility key="accessibilityConfiguration" identifier="RegisterEmail"/>
                                 <constraints>
@@ -81,7 +82,7 @@
                             <constraint firstItem="W4Q-qU-wpf" firstAttribute="top" secondItem="66S-z9-dyK" secondAttribute="bottom" constant="25" id="wQ4-Ee-iLf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="wMp-Bb-mWF"/>
+                    <navigationItem key="navigationItem" title="Flash Chat" id="wMp-Bb-mWF"/>
                     <connections>
                         <outlet property="emailField" destination="bbL-8c-Uqz" id="Ou0-CK-vqZ"/>
                         <outlet property="errorLabel" destination="ft9-ZU-8W0" id="Eez-1U-j4L"/>
@@ -93,7 +94,7 @@
             </objects>
             <point key="canvasLocation" x="860.30534351145036" y="-251.40845070422537"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Flash Chat-->
         <scene sceneID="7M9-mD-8fC">
             <objects>
                 <viewController id="Bji-Zl-bn7" customClass="ChatViewController" customModule="Flash_Chat" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,23 +105,83 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="chat_bg" translatesAutoresizingMaskIntoConstraints="NO" id="MQz-d4-nbS">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="87P-N7-XwC">
+                                <rect key="frame" x="0.0" y="103" width="393" height="619"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4U-ZK-OdR">
+                                <rect key="frame" x="0.0" y="722" width="393" height="130"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8WP-Ql-96R">
+                                        <rect key="frame" x="25" y="42.666666666666629" width="293" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="53o-c5-X51"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pA-FH-2pa">
+                                        <rect key="frame" x="321" y="42.666666666666629" width="57" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="sga-FQ-1iz"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="paperplane.fill" catalog="system" symbolScale="large"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21" scale="large"/>
+                                            <color key="baseForegroundColor" red="0.87450981139999995" green="0.42352938649999999" blue="0.61960786580000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="sendPressed:" destination="Bji-Zl-bn7" eventType="touchUpInside" id="Hfg-Nv-YNT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91764706370000004" green="0.66666668650000005" blue="0.67450982329999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="8WP-Ql-96R" firstAttribute="centerY" secondItem="h4U-ZK-OdR" secondAttribute="centerY" id="496-ef-vOS"/>
+                                    <constraint firstItem="8WP-Ql-96R" firstAttribute="leading" secondItem="h4U-ZK-OdR" secondAttribute="leading" constant="25" id="8ju-pG-TTn"/>
+                                    <constraint firstItem="3pA-FH-2pa" firstAttribute="trailing" secondItem="8WP-Ql-96R" secondAttribute="trailing" constant="60" id="EZe-yB-eyq"/>
+                                    <constraint firstItem="3pA-FH-2pa" firstAttribute="centerY" secondItem="h4U-ZK-OdR" secondAttribute="centerY" id="R10-tZ-0cq"/>
+                                    <constraint firstAttribute="height" constant="130" id="RzS-JU-t0d"/>
+                                    <constraint firstAttribute="trailing" secondItem="3pA-FH-2pa" secondAttribute="trailing" constant="15" id="aXm-0v-F2D"/>
+                                    <constraint firstItem="3pA-FH-2pa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8WP-Ql-96R" secondAttribute="trailing" constant="3" id="qu4-hP-mz8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tb1-zb-nxN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="MQz-d4-nbS" secondAttribute="bottom" id="0z9-J4-yg5"/>
+                            <constraint firstItem="tb1-zb-nxN" firstAttribute="trailing" secondItem="87P-N7-XwC" secondAttribute="trailing" id="1on-sO-y2V"/>
+                            <constraint firstItem="h4U-ZK-OdR" firstAttribute="top" secondItem="87P-N7-XwC" secondAttribute="bottom" id="5fG-72-PQH"/>
+                            <constraint firstItem="87P-N7-XwC" firstAttribute="top" secondItem="tb1-zb-nxN" secondAttribute="top" id="Gix-DG-cv8"/>
+                            <constraint firstItem="tb1-zb-nxN" firstAttribute="trailing" secondItem="h4U-ZK-OdR" secondAttribute="trailing" id="IL4-U7-ME0"/>
                             <constraint firstItem="MQz-d4-nbS" firstAttribute="top" secondItem="OOJ-AR-vwV" secondAttribute="top" id="Ogz-Mh-pWk"/>
+                            <constraint firstAttribute="bottom" secondItem="h4U-ZK-OdR" secondAttribute="bottom" id="UsD-gy-zst"/>
                             <constraint firstAttribute="trailing" secondItem="MQz-d4-nbS" secondAttribute="trailing" id="oP8-vW-PqT"/>
                             <constraint firstItem="MQz-d4-nbS" firstAttribute="leading" secondItem="OOJ-AR-vwV" secondAttribute="leading" id="oxS-pH-Jha"/>
+                            <constraint firstItem="h4U-ZK-OdR" firstAttribute="leading" secondItem="tb1-zb-nxN" secondAttribute="leading" id="r4w-Re-2M9"/>
+                            <constraint firstItem="87P-N7-XwC" firstAttribute="leading" secondItem="tb1-zb-nxN" secondAttribute="leading" id="zBI-Su-bth"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fFO-AF-LC0"/>
+                    <navigationItem key="navigationItem" title="Flash Chat" id="fFO-AF-LC0">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" image="rectangle.portrait.and.arrow.right" catalog="system" id="GlD-QH-502">
+                            <color key="tintColor" red="0.18039217590000001" green="0.20784312490000001" blue="0.21568629149999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="logoutPressed:" destination="Bji-Zl-bn7" id="jCb-7d-Gny"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="messageTextField" destination="8WP-Ql-96R" id="kHn-xo-zJi"/>
+                        <outlet property="tableView" destination="87P-N7-XwC" id="cSh-uL-Gbe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyC-nh-avb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1779.3893129770991" y="31.690140845070424"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Flash Chat-->
         <scene sceneID="ukd-b6-10S">
             <objects>
                 <viewController id="gWc-lR-OKi" customClass="LoginViewController" customModule="Flash_Chat" customModuleProvider="target" sceneMemberID="viewController">
@@ -131,7 +192,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="chat_bg" translatesAutoresizingMaskIntoConstraints="NO" id="jWW-kB-4se">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. lucy@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZy-tn-BLC">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="star_lord@gg.com" borderStyle="roundedRect" placeholder="e.g. lucy@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZy-tn-BLC">
                                 <rect key="frame" x="71.666666666666686" y="128" width="250" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="A0s-yh-yos"/>
@@ -140,7 +201,7 @@
                                 <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="* * * * * *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5j2-sw-QET">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="* * * * * *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5j2-sw-QET">
                                 <rect key="frame" x="71.666666666666686" y="188" width="250" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="e83-aF-zpG"/>
@@ -191,7 +252,7 @@
                             <constraint firstItem="uZy-tn-BLC" firstAttribute="centerX" secondItem="9FI-xL-9Of" secondAttribute="centerX" id="xa8-h1-y94"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="08v-7q-D7y"/>
+                    <navigationItem key="navigationItem" title="Flash Chat" id="08v-7q-D7y"/>
                     <connections>
                         <outlet property="emailField" destination="uZy-tn-BLC" id="HLL-XU-Hnc"/>
                         <outlet property="errorLabel" destination="7jE-Sw-2Ru" id="eeV-ZV-78Y"/>
@@ -299,6 +360,12 @@ This is a flash chat!</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dw1-yu-pfx">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.18039217590000001" green="0.20784312490000001" blue="0.21568629149999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.91764706370000004" green="0.66666668650000005" blue="0.67450982329999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="18"/>
+                            <color key="textColor" red="0.18039217590000001" green="0.20784312490000001" blue="0.21568629149999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -310,12 +377,19 @@ This is a flash chat!</string>
             <point key="canvasLocation" x="-1135.1145038167938" y="38.732394366197184"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="0jB-Lm-sGL">
+            <size key="intrinsicContentSize" width="176.66666666666666" height="32"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="4Vg-RY-3fE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chat_bg" width="1080" height="1920"/>
         <image name="chat_phone" width="1080" height="1920"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="119"/>
+        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="108"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

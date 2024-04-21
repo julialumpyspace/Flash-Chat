@@ -8,7 +8,6 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
-    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -17,6 +16,11 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        authManager.addObserver(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        authManager.removeObserver(self)
     }
     
     @IBAction func registerPressed(_ sender: UIButton) {
@@ -25,12 +29,28 @@ class RegisterViewController: UIViewController {
         let emailError = emailField.errorEmptyCheck(field: emailField, name: "email")
         let passwordError = passwordField.errorEmptyCheck(field: passwordField, name: "password")
         
-        if emailError.error != true, passwordError.error != true {
+        if !emailError.error, !passwordError.error {
             authManager.register(email: emailField.text!, password: passwordField.text!)
         } else {
             errorLabel.text = ErrorManager.getCombinedErrorMessages(errorFields: [emailError, passwordError])
         }
     }
+}
+
+// MARK: - AuthObserver
+
+extension RegisterViewController: AuthObserver {
+    
+    func registrationDidFinish(response: AuthResponse) {
+        if response.error.error {
+            errorLabel.text = response.error.message
+        } else {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: K.Segue_RegisterToChat_ID, sender: self)
+            }
+        }
+    }
+    
 }
 
 

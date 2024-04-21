@@ -23,7 +23,12 @@
 		51592F682BD152E500BD734D /* ErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51592F672BD152E500BD734D /* ErrorExtension.swift */; };
 		51592F6A2BD1B8EB00BD734D /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51592F692BD1B8EB00BD734D /* AuthManager.swift */; };
 		51592F6D2BD1BA7100BD734D /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51592F6C2BD1BA7100BD734D /* AuthModel.swift */; };
-		51592F6F2BD1C09A00BD734D /* ErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51592F6E2BD1C09A00BD734D /* ErrorData.swift */; };
+		51592F712BD2AD3A00BD734D /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51592F702BD2AD3A00BD734D /* MessageModel.swift */; };
+		51592F742BD2BA9600BD734D /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51592F722BD2BA9600BD734D /* MessageCell.swift */; };
+		51592F752BD2BA9600BD734D /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51592F732BD2BA9600BD734D /* MessageCell.xib */; };
+		51592F772BD3D74A00BD734D /* FStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51592F762BD3D74A00BD734D /* FStoreManager.swift */; };
+		51592F7A2BD3EE2400BD734D /* FStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51592F792BD3EE2400BD734D /* FStoreModel.swift */; };
+		51592F7D2BD3EFD500BD734D /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51592F7C2BD3EFD500BD734D /* MessageManager.swift */; };
 		F5AF6BC355A4B86E4CD65FDB /* Pods_Flash_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49674829001354A603A80B68 /* Pods_Flash_Chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +53,12 @@
 		51592F672BD152E500BD734D /* ErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtension.swift; sourceTree = "<group>"; };
 		51592F692BD1B8EB00BD734D /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		51592F6C2BD1BA7100BD734D /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
-		51592F6E2BD1C09A00BD734D /* ErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorData.swift; sourceTree = "<group>"; };
+		51592F702BD2AD3A00BD734D /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		51592F722BD2BA9600BD734D /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		51592F732BD2BA9600BD734D /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		51592F762BD3D74A00BD734D /* FStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FStoreManager.swift; sourceTree = "<group>"; };
+		51592F792BD3EE2400BD734D /* FStoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FStoreModel.swift; sourceTree = "<group>"; };
+		51592F7C2BD3EFD500BD734D /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		578294A0AC79B348068D35E8 /* Pods-Flash Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flash Chat.debug.xcconfig"; path = "Target Support Files/Pods-Flash Chat/Pods-Flash Chat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				51592F1A2BCFEDF300BD734D /* Main.storyboard */,
+				51592F722BD2BA9600BD734D /* MessageCell.swift */,
+				51592F732BD2BA9600BD734D /* MessageCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -140,6 +152,8 @@
 			children = (
 				51592F642BD152AC00BD734D /* Error */,
 				51592F6B2BD1BA5E00BD734D /* Auth */,
+				51592F782BD3EDFE00BD734D /* FStore */,
+				51592F7B2BD3EFB700BD734D /* Message */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -150,7 +164,6 @@
 				51592F622BD152A400BD734D /* ErrorManager.swift */,
 				51592F652BD152BD00BD734D /* ErrorModel.swift */,
 				51592F672BD152E500BD734D /* ErrorExtension.swift */,
-				51592F6E2BD1C09A00BD734D /* ErrorData.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -162,6 +175,24 @@
 				51592F6C2BD1BA7100BD734D /* AuthModel.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		51592F782BD3EDFE00BD734D /* FStore */ = {
+			isa = PBXGroup;
+			children = (
+				51592F762BD3D74A00BD734D /* FStoreManager.swift */,
+				51592F792BD3EE2400BD734D /* FStoreModel.swift */,
+			);
+			path = FStore;
+			sourceTree = "<group>";
+		};
+		51592F7B2BD3EFB700BD734D /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				51592F702BD2AD3A00BD734D /* MessageModel.swift */,
+				51592F7C2BD3EFD500BD734D /* MessageManager.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51592F752BD2BA9600BD734D /* MessageCell.xib in Resources */,
 				51592F1E2BCFEDF500BD734D /* Assets.xcassets in Resources */,
 				51592F612BD1486100BD734D /* GoogleService-Info.plist in Resources */,
 				51592F212BCFEDF500BD734D /* Base in Resources */,
@@ -281,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51592F682BD152E500BD734D /* ErrorExtension.swift in Sources */,
+				51592F7A2BD3EE2400BD734D /* FStoreModel.swift in Sources */,
 				51592F152BCFEDF300BD734D /* AppDelegate.swift in Sources */,
 				51592F572BD13A5100BD734D /* ChatViewController.swift in Sources */,
 				51592F632BD152A400BD734D /* ErrorManager.swift in Sources */,
@@ -288,11 +321,14 @@
 				51592F6D2BD1BA7100BD734D /* AuthModel.swift in Sources */,
 				51592F592BD13A6A00BD734D /* LoginViewController.swift in Sources */,
 				51592F5F2BD13E4A00BD734D /* AppConstants.swift in Sources */,
+				51592F7D2BD3EFD500BD734D /* MessageManager.swift in Sources */,
 				51592F662BD152BD00BD734D /* ErrorModel.swift in Sources */,
-				51592F6F2BD1C09A00BD734D /* ErrorData.swift in Sources */,
 				51592F6A2BD1B8EB00BD734D /* AuthManager.swift in Sources */,
+				51592F742BD2BA9600BD734D /* MessageCell.swift in Sources */,
+				51592F772BD3D74A00BD734D /* FStoreManager.swift in Sources */,
 				51592F172BCFEDF300BD734D /* SceneDelegate.swift in Sources */,
 				51592F5D2BD13A9100BD734D /* WelcomeViewController.swift in Sources */,
+				51592F712BD2AD3A00BD734D /* MessageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

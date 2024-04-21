@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+struct MessageManager {
+    let user = AuthManager().getAuthorizedUser()
+    
+    func createMessage(message: String?) -> Message? {
+        if let sender = user, let body = message {
+            return Message(
+                sender: sender,
+                body: body,
+                date: "\(Date())"
+            )
+        } else {
+            return nil
+        }
+    }
+}

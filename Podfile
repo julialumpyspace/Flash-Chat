@@ -10,5 +10,6 @@ target 'Flash Chat' do
   pod 'SnapKit', '~> 5.7.0'
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
+  pod 'IQKeyboardManagerSwift'
 
 end

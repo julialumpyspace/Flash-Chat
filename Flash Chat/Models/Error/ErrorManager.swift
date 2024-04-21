@@ -12,7 +12,7 @@ struct ErrorManager: ErrorUIHandler {
     
     func errorEmptyCheck(field: UITextField, name: String) -> ErrorResponse {
         if field.text == nil || field.text == "" {
-            let message = ErrorMessage.emptyField(fieldName: name)
+            let message = ErrorMessage.UIField.empty(fieldName: name)
             return ErrorResponse(error: true, message: message)
         } else {
             return noError
